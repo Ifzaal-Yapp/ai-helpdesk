@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HelpDesk AI — IT Support</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">⚡</div>
+        <div>
+          <div class="logo-title">HelpDesk AI</div>
+          <div class="logo-sub">IT Support Assistant</div>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-btn active" onclick="newChat()">New chat</button>
+        <button class="nav-btn" onclick="clearHistory()">Clear history</button>
+      </nav>
+
+      <div class="status">
+        <div class="status-dot"></div>
+        <span>AI online · Ready</span>
+      </div>
+    </aside>
+
+    <!-- Main chat area -->
+    <main class="chat-area">
+
+      <!-- Header -->
+      <header class="chat-header">
+        <div>
+          <h1 class="chat-title">IT Support Chat</h1>
+          <p class="chat-sub">Powered by Claude AI · Ask me anything IT related</p>
+        </div>
+      </header>
+
+      <!-- Messages -->
+      <div class="messages" id="messages">
+
+        <!-- Welcome message -->
+        <div class="message ai">
+          <div class="avatar ai-avatar">AI</div>
+          <div class="bubble">
+            Hello! I'm your IT support assistant. I can help you troubleshoot 
+            technical issues and answer IT questions. What can I help you with today?
+          </div>
+        </div>
+
+        <!-- Suggested starter questions -->
+        <div class="suggestions" id="suggestions">
+          <p class="suggestions-label">Common issues — tap to get started:</p>
+          <div class="suggestions-grid">
+            <button class="suggestion-btn" onclick="sendSuggestion('My computer won\'t turn on')">
+              💻 Computer won't turn on
+            </button>
+            <button class="suggestion-btn" onclick="sendSuggestion('I can\'t connect to WiFi')">
+              📶 Can't connect to WiFi
+            </button>
+            <button class="suggestion-btn" onclick="sendSuggestion('My printer isn\'t working')">
+              🖨️ Printer not working
+            </button>
+            <button class="suggestion-btn" onclick="sendSuggestion('I\'ve forgotten my password')">
+              🔑 Forgotten my password
+            </button>
+            <button class="suggestion-btn" onclick="sendSuggestion('My screen has gone black')">
+              🖥️ Screen has gone black
+            </button>
+            <button class="suggestion-btn" onclick="sendSuggestion('My computer is running very slowly')">
+              🐢 Computer running slowly
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Input area -->
+      <div class="input-area">
+        <div class="input-wrap">
+          <input 
+            type="text" 
+            id="user-input" 
+            placeholder="Describe your IT issue in plain English..." 
+            onkeydown="handleKey(event)"
+          />
+          <button class="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+        <p class="input-hint">Press Enter to send · We'll walk you through it step by step</p>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
