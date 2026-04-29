@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from anthropic import Anthropic
 from dotenv import load_dotenv
+from pydantic import BaseModel
 import os
 
 load_dotenv()
@@ -9,8 +10,10 @@ router = APIRouter()
 client = Anthropic()
 conversation_history = []
 
-SYSTEM_PROMPT = """You are a friendly IT support assistant helping 
-non-technical users solve everyday computer problems. 
+class ChatMessage(BaseModel):
+    message: str
+
+SYSTEM_PROMPT = """You are a friendly IT support assistant helping non-technical users solve everyday computer problems. 
 
 Always:
 - Use plain English and avoid technical jargon
@@ -19,12 +22,11 @@ Always:
 - Ask one clarifying question if you need more information
 - Keep responses concise and focused on solving the problem
 
-If a problem is beyond basic troubleshooting, kindly suggest 
-the user contacts a professional IT technician."""
+If a problem is beyond basic troubleshooting, kindly suggest the user contacts a professional IT technician."""
 
 @router.post("/chat")
-def chat(message: dict):
-    user_message = message.get("message", "")
+def chat(message: ChatMessage):
+    user_message = message.message
 
     if not user_message:
         return {"error": "No message provided"}
@@ -56,7 +58,7 @@ def chat(message: dict):
 
     except Exception as e:
         return {
-            "response": "Sorry, I'm having trouble connecting right now. Please try again in a moment.",
+            "response": "Sorry, I am having trouble connecting right now. Please try again in a moment.",
             "error": str(e)
         }
 
