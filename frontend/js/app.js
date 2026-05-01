@@ -125,6 +125,9 @@ function appendMessage(text, sender, isError = false) {
 
   // Scroll to latest message
   messages.scrollTop = messages.scrollHeight;
+  setTimeout(() => {
+    messages.scrollTop = messages.scrollHeight;
+  }, 100);
 }
 
 /* ============================================
@@ -196,6 +199,7 @@ async function newChat() {
     "Hello! I'm your IT support assistant. I can help you troubleshoot technical issues and answer IT questions. What can I help you with today?",
     'ai'
   );
+  messages.scrollTop = messages.scrollHeight;
 
   // Restore suggestions
   const suggestionsHTML = `

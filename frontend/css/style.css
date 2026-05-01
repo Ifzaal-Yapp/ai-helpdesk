@@ -175,8 +175,9 @@ body {
   flex-direction: column;
   gap: 16px;
   scroll-behavior: smooth;
+  max-height: 400px;
+  min-height: 0;
 }
-
 /* Individual message */
 .message {
   display: flex;
